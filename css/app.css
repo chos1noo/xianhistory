@@ -1,0 +1,366 @@
+/* ============================================================
+   华夏文明·十三朝古都 - 历史数字化平台
+   全局样式 - 中式历史文化官网风格
+   ============================================================ */
+
+/* 字体已在 index.html 中通过 link 标签加载 */
+/* Ma Shan Zheng(楷书) | ZCOOL XiaoWei(古朴篆书风) | Noto Serif SC(宋体) | Zhi Mang Xing(行书) */
+
+/* ============================================================
+   CSS 变量 - 中式暖色配色体系
+   ============================================================ */
+:root {
+    /* 主色调 - 中国红+暖棕 */
+    --color-primary: #8B2500;
+    --color-primary-dark: #6B1C00;
+    --color-primary-light: #A0522D;
+    --color-accent: #C41E3A;
+    --color-gold: #B8860B;
+    --color-gold-light: #DAA520;
+
+    /* 背景色 - 浅米白/浅灰 */
+    --bg-page: #F5F0E8;
+    --bg-warm: #F8F4EC;
+    --bg-card: #FFFFFF;
+    --bg-card-hover: #FFFDF8;
+    --bg-header: linear-gradient(135deg, #5B2C0E 0%, #8B4513 30%, #6B3410 60%, #4A2008 100%);
+    --bg-nav: #8B2500;
+
+    /* 文字色 */
+    --text-primary: #2C1810;
+    --text-secondary: #5C4033;
+    --text-muted: #8B7355;
+    --text-light: #A0937D;
+    --text-white: #FFFFFF;
+    --text-gold: #B8860B;
+
+    /* 边框和装饰 */
+    --border-subtle: rgba(139, 37, 0, 0.1);
+    --border-warm: rgba(139, 69, 19, 0.2);
+    --border-gold: rgba(184, 134, 11, 0.3);
+
+    /* 阴影 */
+    --shadow-soft: 0 2px 12px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.12);
+    --shadow-strong: 0 8px 32px rgba(0, 0, 0, 0.15);
+
+    /* 字体 */
+    --font-serif: 'Noto Serif SC', 'SimSun', '宋体', serif;
+    --font-display: 'Ma Shan Zheng', 'KaiTi', '楷体', cursive;
+    --font-title: 'ZCOOL XiaoWei', 'Ma Shan Zheng', 'KaiTi', serif;
+    --font-sans: 'Noto Serif SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* ============================================================
+   全局重置和基础样式
+   ============================================================ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--font-sans);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-color: var(--bg-page);
+    /* 古纸质感纹理 */
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* ============================================================
+   排版 - 古典字体风格
+   ============================================================ */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: 2px;
+    color: var(--text-primary);
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; }
+h2 { font-size: clamp(1.5rem, 3.5vw, 2.5rem); }
+h3 { font-size: clamp(1.2rem, 2.5vw, 1.8rem); }
+h4 { font-size: 1.2rem; }
+h5 { font-size: 1rem; }
+h6 { font-size: 0.9rem; }
+
+p {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-accent);
+}
+
+/* ============================================================
+   滚动条 - 暖棕风格
+   ============================================================ */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #EDE8E0;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #B8860B, #8B4513);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #A0522D;
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #8B4513 #EDE8E0;
+}
+
+/* ============================================================
+   选中文字样式
+   ============================================================ */
+::selection {
+    background: rgba(139, 37, 0, 0.15);
+    color: var(--color-primary-dark);
+}
+
+/* ============================================================
+   通用组件样式
+   ============================================================ */
+
+/* 古典卡片 */
+.card-ancient {
+    background: var(--bg-card);
+    border: 1px solid var(--border-warm);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-soft);
+}
+
+.card-ancient:hover {
+    border-color: var(--border-gold);
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-2px);
+}
+
+/* 古典分割线 */
+.divider-ancient {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-warm), transparent);
+    margin: 2rem 0;
+    border: none;
+}
+
+/* 古典按钮 */
+.btn-ancient {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.5rem;
+    background: var(--color-primary);
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-family: var(--font-serif);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-ancient:hover {
+    background: var(--color-primary-dark);
+    box-shadow: 0 4px 15px rgba(139, 37, 0, 0.3);
+    transform: translateY(-1px);
+    color: #fff;
+}
+
+/* 印章风格标记 */
+.seal-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: 2px solid #c41e3a;
+    border-radius: 4px;
+    color: #c41e3a;
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+    transform: rotate(-5deg);
+    opacity: 0.8;
+}
+
+/* ============================================================
+   加载和过渡动画
+   ============================================================ */
+.fade-in {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmerGold {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+/* ============================================================
+   Blazor 特定样式
+   ============================================================ */
+#blazor-error-ui {
+    background: #FFF8F0;
+    border-top: 2px solid var(--color-primary);
+    color: var(--text-primary);
+    bottom: 0;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+    display: none;
+    left: 0;
+    padding: 0.8rem 1.5rem;
+    position: fixed;
+    width: 100%;
+    z-index: 10000;
+    font-family: var(--font-serif);
+}
+
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 1rem;
+    top: 0.5rem;
+    color: var(--color-primary);
+    font-size: 1.2rem;
+}
+
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid rgba(46, 139, 87, 0.5);
+}
+
+.invalid {
+    outline: 1px solid rgba(220, 20, 60, 0.5);
+}
+
+.validation-message {
+    color: #e74c3c;
+    font-size: 0.85rem;
+    font-family: var(--font-serif);
+}
+
+/* ============================================================
+   Loading 加载动画
+   ============================================================ */
+.loading-progress {
+    position: relative;
+    display: block;
+    width: 8rem;
+    height: 8rem;
+    margin: 20vh auto 1rem auto;
+}
+
+.loading-progress circle {
+    fill: none;
+    stroke: var(--color-primary);
+    stroke-width: 3px;
+    stroke-dasharray: 180;
+    transform-origin: 50% 50%;
+    animation: loading-spin 1.5s linear infinite;
+}
+
+@keyframes loading-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.loading-progress-text {
+    position: absolute;
+    text-align: center;
+    font-weight: 900;
+    inset: calc(20% - 0.3rem);
+    font-family: var(--font-display);
+    color: var(--color-primary);
+    font-size: 1.2rem;
+}
+
+.loading-progress-text::after {
+    content: "%";
+}
+
+/* ============================================================
+   页面过渡效果
+   ============================================================ */
+.page {
+    animation: pageEnter 0.4s ease-out;
+}
+
+@keyframes pageEnter {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   响应式辅助
+   ============================================================ */
+.container-ancient {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+@media (max-width: 768px) {
+    html { font-size: 14px; }
+    .container-ancient { padding: 0 1rem; }
+}
+
+@media (max-width: 480px) {
+    html { font-size: 13px; }
+}
+
+/* ============================================================
+   图片通用处理
+   ============================================================ */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ============================================================
+   print 样式
+   ============================================================ */
+@media print {
+    body {
+        background: #fff;
+        color: #333;
+    }
+}
